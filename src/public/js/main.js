@@ -1,0 +1,1 @@
+io(); // Ejecutar la función de socket io
