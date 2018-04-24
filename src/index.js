@@ -7,13 +7,15 @@ const socketio = require('socket.io');
 const app = express(); // Llamar la función express, nos devolverá un objeto js con metódos para hacer el servidor
 const server = http.createServer(app); // Crearmos un servidor y le mandamos todo el contenido de app
 const io = socketio.listen(server); // Conexión de web sockets, app en tiempo real
-// Una vez que io detecte una conexión
-io.on('connection', socket => {
-    console.log('new user connected');
-});
+
+// settings
+app.set('port', process.env.PORT || 3000);
+
+require('./sockets')(io); //Requerir el archivo de sockets y mandar nuestra constante io
+
 // static files
 app.use(express.static(path.join(__dirname, 'public'))); // Mandar la carpeta public cada que el usuario se conecte al chat
 // starting the server
-server.listen(3000, () => {
-    console.log("Server on port 3000");
+server.listen(app.get('port'), () => {
+    console.log("Server on port ", app.get('port'));
 }); // El servidor se quedará escuchando en el puerto 3000
