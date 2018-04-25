@@ -34,7 +34,9 @@ $(function () {
     // Events
     $messageForm.submit(e => {
         e.preventDefault()
-        socket.emit('send message', $messageBox.val()) // Set data of messageBox from event send message
+        socket.emit('send message', $messageBox.val(), data => {
+            $chat.append(`<p class="error">${data}</p>`) //alert alert-warning
+        }) // Set data of messageBox from event send message
         $messageBox.val('')
     })
 
@@ -49,5 +51,9 @@ $(function () {
         }
         $usernames.html(html)
         $usersN.html(`<h4>Users online: ${data.length}</h4>`)
+    })
+
+    socket.on('whisper', data => {
+    $chat.append(`<p class="whisper text-info"><b>${data.nick}: <b>${data.msg}</p>`)
     })
 })

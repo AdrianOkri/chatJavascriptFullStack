@@ -8,3 +8,11 @@ body {
 #contentWrap {
     display: none;
 }
+
+.error {
+    color: red;
+}
+
+.whisper {
+    font-style: italic;
+}
