@@ -50,7 +50,7 @@ $(function () {
             html += `<p><i class="fas fa-comment"></i> ${data[i]}</p>`
         }
         $usernames.html(html)
-        $usersN.html(`<h4>Users online: ${data.length}</h4>`)
+        $usersN.html(`<h4>Users online: ${data.length} <i class="fas fa-id-badge"></i></h4>`)
     })
 
     socket.on('whisper', data => {
